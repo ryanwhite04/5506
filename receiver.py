@@ -17,27 +17,27 @@ print("Connected by", addr)
  
  
 try:
- while True:
- command = conn.recv(1024).decode()
- 
- if command == "on":
- GPIO.output(LED_PIN, GPIO.HIGH)
- res = "on"
- print("on")
- elif command == "off":
- GPIO.output(LED_PIN, GPIO.LOW)
- res = "off"
- print("off")
- else:
- res = "invalid"
- print("Invalid command")
- 
- conn.send(res.encode())
- 
+    while True:
+        command = conn.recv(1024).decode()
+
+        if command == "on":
+            GPIO.output(LED_PIN, GPIO.HIGH)
+            res = "on"
+            print("on")
+        elif command == "off":
+            GPIO.output(LED_PIN, GPIO.LOW)
+            res = "off"
+            print("off")
+        else:
+            res = "invalid"
+            print("Invalid command")
+
+            conn.send(res.encode())
+
 except KeyboardInterrupt:
- print("\nExisting...")
- GPIO.cleanup()
- s.close()
+    print("\nExisting...")
+    GPIO.cleanup()
+    s.close()
 finally:
- GPIO.cleanup()
- s.close()
+    GPIO.cleanup()
+    s.close()
